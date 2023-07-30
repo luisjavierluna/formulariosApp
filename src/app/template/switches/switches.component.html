@@ -9,8 +9,11 @@
             <div class="form-check">
                 <input class="form-check-input" 
                        type="radio" 
+                       value="M"
+                       [(ngModel)]="persona.genero"
                        name="radioGenero" 
-                       id="radioMasculino">
+                       id="radioMasculino"
+                       required>
                 <label class="form-check-label" for="flexRadioDefault1">
                   Masculino
                 </label>
@@ -18,8 +21,11 @@
               <div class="form-check">
                 <input class="form-check-input" 
                        type="radio" 
+                       value="F"
+                       [(ngModel)]="persona.genero"
                        name="radioGenero" 
-                       id="radioFemenino" checked>
+                       id="radioFemenino"
+                       required>
                 <label class="form-check-label" for="flexRadioDefault2">
                   Femenino
                 </label>
@@ -32,10 +38,11 @@
         <label class="col-sm-3 col-form-label">Notificaciones</label>
         <div class="col-sm-9">
 
-            <div class="form-check form-switch">
+            <div class="form-check form-switch mt-2">
                 <input class="form-check-input" 
-                       type="checkbox" 
-                       role="switch" 
+                       type="checkbox"
+                       [(ngModel)]="persona.notificaciones"
+                       name="notificaciones"
                        id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
               </div>              
@@ -48,9 +55,12 @@
         <label class="col-sm-3 col-form-label"></label>
         <div class="col-sm-9">
             <div class="form-check">
-                <input class="form-check-input" 
-                       type="checkbox" 
-                       id="flexCheckDefault">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="terminos"
+                       [(ngModel)]="terminosYCondiciones"
+                       id="flexCheckDefault"
+                       required>
                 <label class="form-check-label" for="flexCheckDefault">
                     Términos y condiciones de uso
                 </label>
@@ -61,10 +71,28 @@
     <!-- Botón Submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+                    [disabled]="miFormulario.invalid">
                 Guardar
             </button>
         </div>
     </div>
 
 </form>
+
+<h5>Valor del Formulario</h5>
+<pre>{{ miFormulario.value | json }}</pre>
+<br>
+
+<h5>Persona</h5>
+<pre>{{ persona | json }}</pre>
+<br>
+
+<h5>Valid</h5>
+<pre>{{ miFormulario.valid }}</pre>
+
+<h5>Término</h5>
+<pre>{{ miFormulario.controls['terminos']?.valid | json}}</pre>
+
+<br>
+<pre>Condiciones: </pre>
